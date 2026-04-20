@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .light {
+            background-color: white;
+            color: black;
+        }
+        
+        .dark {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        
+        .test-section {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .light .test-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        
+        .dark .test-section {
+            background: #1e1e1e;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body class="light" id="testBody">
+    <h1>Dark Theme Test</h1>
+    <button onclick="toggleTheme()">Toggle Dark/Light Theme</button>
+    
+    <div class="test-section">
+        <h2>Test Content</h2>
+        <p>This is a test paragraph to see how text looks in both themes.</p>
+        <p>Another paragraph with more content to test readability.</p>
+    </div>
+    
+    <div class="test-section">
+        <h3>Colors Test</h3>
+        <p>Primary color should be visible in both themes.</p>
+        <p>Secondary elements should also be clearly visible.</p>
+    </div>
+    
+    <script>
+        function toggleTheme() {
+            const body = document.getElementById('testBody');
+            if (body.classList.contains('light')) {
+                body.classList.remove('light');
+                body.classList.add('dark');
+            } else {
+                body.classList.remove('dark');
+                body.classList.add('light');
+            }
+        }
+        
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.getElementById('testBody').classList.remove('light');
+            document.getElementById('testBody').classList.add('dark');
+        }
+    </script>
+</body>
+</html>
